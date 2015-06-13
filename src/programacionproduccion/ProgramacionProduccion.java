@@ -1,7 +1,9 @@
 package programacionproduccion;
 
+import java.util.Arrays;
 import programacionproduccion.objetivos.Cmax;
 import programacionproduccion.objetivos.LmaxWPreemption;
+import programacionproduccion.reglas.Prec;
 
 
 public class ProgramacionProduccion {
@@ -55,6 +57,31 @@ public class ProgramacionProduccion {
         System.out.println("\n\nPROBLEM 6 ...");
         cmax6.schedulePrecInfMach(ect,lct); //Programar para minimizar el Cmax con Precedencia e Infinitas máquinas.
         
+        /*  ********  PUNTO 3  ********   */
+
+        int[] p3 = {10,10,10,12,11,10,12,12,10,10,10,10};
+        int m3 = 4;
+        int[][] precedence = {
+                    null,       //j1
+                    {1},        //j2
+                    {2,4,5},      //j3
+                    null,       //j4
+                    null,       //j5
+                    {4,5},      //j6
+                    null,       //j7
+                    null,       //j8
+                    null,       //j9
+                    {7,8,9},    //j10
+                    {7,8,9},    //j11
+                    {8,9}       //j10
+                };
+        int jobs3 = precedence.length;
+        
+        Cmax cmax3 = new Cmax(jobs3, m3, p3);
+        System.out.println("\n\nPROBLEM 3 ...");
+        Prec prec = new Prec(precedence,jobs3,m3,p3);
+        System.out.println("ECT: "+Arrays.toString(prec.ect));
+        System.out.println("LCT: "+Arrays.toString(prec.lct));
         
     }
     
